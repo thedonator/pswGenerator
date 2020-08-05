@@ -6,11 +6,29 @@
 
 
 void greetings(void);
-int config(void);
+void fileExist(void);
 void printAdvice(int nCharacters);
+void logFile(char *fileName, int pswLenght);                              
+void generatePsw(int lenght);
+int config(void);
 bool choice(void);
-void openCreateFile(char *fileName,  int pswLenght);                              
-//void generatePsw();
+
+
+void fileExist(void)
+{
+    /*if(command != 2)
+    {
+        printf("Usage:%s fileName \n",progName);
+        exit(EXIT_FAILURE);
+    }
+    file = fopen(fileName,"a");
+    if(file == NULL)
+    {
+        printf("%s Can't be opened ",fileName);
+        exit(EXIT_FAILURE);
+
+    }*/
+}
 
 void greetings(void)
 {
@@ -18,6 +36,7 @@ void greetings(void)
     printf("Insert number of characters required "
     "for the psw: ");
 }
+
 void printAdvice(int nCharacters)
 {
     if (nCharacters < 0 || nCharacters == 0)
@@ -64,19 +83,30 @@ int config(void){
     return pswLenght;
 }
 
-void openCreateFile(char *fileName,  int pswLenght){
+//insert and pass to funtion int nmbrPsw to print the psw to the file
+void logFile(char *fileName,  int pswLenght){
     FILE *file;
     file = fopen(fileName,"a");
-    fprintf(file, "Log:\n\tpassword lenght: %d\n", pswLenght);
+    fprintf(file, "Log:\n\tdate:\n\tpassword lenght: %d\n", pswLenght);
     fclose(file);
+}
+
+void generatePsw(int lenght)
+{
+    int databaseRandIndex;
+    char database[]={'q','w','e','r','t','y','u','i','o','p','a','s','d','f',
+    'g','h','j','k','l','z','x','c','v','b','n','m','Q','W','E','R','T','Y','U',
+    'I','O','P','A','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M',
+    '?','!','$'};
+    srand(time(NULL));
+    databaseRandIndex = rand() % 52;
 }
 
 
 int main(int argc, char *argv[]){
     int pswLenght;
-    pswLenght = config();
-    assert(pswLenght == 88);
-    printf("value = %d \n",pswLenght);
-    openCreateFile(argv[1],pswLenght);
+    //pswLenght = config();
+    //logFile(argv[1],pswLenght);
+    generatePsw(pswLenght);
     return 0;
 }
