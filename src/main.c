@@ -42,7 +42,6 @@ void createPsw(int lenght,int pswId)
     '?','!','$','1','2','3','4','5','6','7','8','9','0'};
 
     password=malloc(lenght);
-    srand(time(NULL));  
     
     for(size_t i=0;i<lenght;i++)
     {
@@ -58,7 +57,6 @@ void pswOutput(int pswLenght,int repetition)
     for (size_t i = 0; i < repetition; i++)
     {
         createPsw(pswLenght,i);
-        sleep(1);
     }
 }
 
@@ -108,6 +106,7 @@ bool choice(void)
 
 
 int main(){
+    srand(time(NULL));
     int pswLenght = 0;
     int numbrPassword =0;
     bool accept = false;
